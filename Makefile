@@ -66,6 +66,7 @@ docs:
 clean:
 	@echo clean ...
 	@rm -fr $(BUILD) *.tar.bz2
+	@rm -rf ./docs/html
 
 dist: $(BUILD)
 	@tar --exclude=*CVS* --exclude=.svn --exclude=*build* --exclude=*.bz2 -cvjf libgba-src-$(DATESTRING).tar.bz2 include src data Makefile libgba_license.txt
