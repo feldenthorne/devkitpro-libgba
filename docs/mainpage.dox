@@ -1,0 +1,48 @@
+/**
+\mainpage libgba Documentation
+
+\tableofcontents
+
+
+\section Overview Overview
+[libgba](http://sourceforge.net/p/devkitpro/libgba/ci/master/tree/) is a set of C/C++ libraries
+that facilitate homebrew programming for the Nintendo 
+[Game Boy Advance](http://www.nintendo.com/consumer/systems/gameboyadvance/index.jsp), created by
+Dave Murphy of [devkitPro](http://devkitpro.org/). 
+These libraries are not endorsed or supported by [Nintendo](http://www.nintendo.com/) and are
+released to the public under the [LGPL v2](https://www.gnu.org/licenses/lgpl-2.1.html), 
+as per the exceptions listed in the included libgba_license.txt.
+
+The purpose of this particular UNOFFICIAL fork is to update and expand the documentation of the 
+original library, as it is somewhat lacking and the 
+[Wayback Machine capture](https://web.archive.org/web/20070913070908/http://devkitpro.sourceforge.net/devkitProWiki/libgba/a00032.html) 
+of the documentation is outdated.
+
+For user reference, the most up-to-date version of this documentation will always be hosted at 
+[LibGBA - StarflakeNights.net](http://www.starflakenights.net/libraries/devkitpro-libgba/docs/html/).
+
+\section Version Version
+The most recent version of libgba can be obtained from the following sources:
+
+1. Official libgba library:[devkitPro SourceForge Page](http://sourceforge.net/p/devkitpro/libgba/ci/master/tree/).
+
+2. UNOFFICIAL libgba fork: [devkitpro-libgba GitHub Page](https://github.com/feldenthorne/devkitpro-libgba).
+
+The official master branch is less likely to give you issues because there's a huge community behind it, 
+which means it's been tested and approved by the official team. As an individual, I can't provide that.
+<i>The only reason you might want to download the UNOFFICIAL source as an end-user</i> is if you want
+the comments above and beyond what you'd find in the original source. I don't plan on changing the
+original library functions, so the unofficial version should perform identically.
+
+If changes are made to the original source, however, they will be listed in this main page and
+documented heavily where the changes appear.
+
+
+\section Acknowledgements Acknowledgements
+Given that this is a fork of the original devkitPro-libgba library, pretty much all the credit that
+you can imagine goes to the original author of these tools, Dave Murphy of 
+[devkitPro](http://devkitpro.org/). I'm sure, of course, that the 
+[devkitPro forum community](http://devkitpro.org/index.php) also had a huge hand in testing, 
+debugging, and suggesting or implementing changes to the code.
+
+*/
