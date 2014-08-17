@@ -80,7 +80,7 @@ struct IntTable{IntFn handler; u32 mask;};
  */
 #define	REG_IF		*(vu16 *)(REG_BASE + 0x202)	// Interrupt Request
 
-/** \typedef enum irqMASKS
+/** \enum irqMASKS
  *  \brief Interrupt masks
  *  \details These masks are used in conjuction with REG_IE to enable specific 
  *  interrupts and with REG_IF to acknowledge interrupts have been serviced.
