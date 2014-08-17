@@ -1,34 +1,32 @@
-/*
-
-	Header file for libgba input functions
-
-	Copyright 2003-2004 by Dave Murphy.
-
-	This library is free software; you can redistribute it and/or
-	modify it under the terms of the GNU Library General Public
-	License as published by the Free Software Foundation; either
-	version 2 of the License, or (at your option) any later version.
-
-	This library is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-	Library General Public License for more details.
-
-	You should have received a copy of the GNU Library General Public
-	License along with this library; if not, write to the Free Software
-	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307
-	USA.
-
-	Please report all bugs and problems through the bug tracker at
-	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
-
-
-*/
-
-/*! \file gba_input.h
-    \brief gba inout support functions.
-
-*/
+//**********************************************************************************
+/** \file gba_input.h
+ *  Header for GBA input handling
+ * 
+ *  It declares the functions required to read the states of the inputs to the
+ *  GBA in various situations (when keys are pressed, held, repeated). It also
+ *  provides the main loop update function, \c scanKeys(), which essentially
+ *  enables the other functions defined here.
+ */ 
+ /* Copyright 2003-2005 by Dave Murphy.
+ * 
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ * 
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Library General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307
+ * USA.
+ * 
+ * Please report all bugs and problems through the bug tracker at
+ * "http://sourceforge.net/tracker/?group_id=114505&atid=668551". */
+//*********************************************************************************
 
 //---------------------------------------------------------------------------------
 #ifndef _gba_input_h_
@@ -40,22 +38,19 @@ extern "C" {
 //---------------------------------------------------------------------------------
 #include "gba_base.h"
 
-/*! \def REG_KEYINPUT
-
-    \brief Keypad status register.
-
-*/
+/** \def REG_KEYINPUT
+ *  \brief Keypad status register.
+ */
 #define REG_KEYINPUT	*(vu16*)(REG_BASE + 0x130)  // Key Input
-/*! \def REG_KEYCNT
 
-    \brief Keypad interrupt control register.
-
-*/
+/** \def REG_KEYCNT
+ *  \brief Keypad interrupt control register.
+ */
 #define REG_KEYCNT		*(vu16*)(REG_BASE + 0x132)  // Key Control
-/*! \enum KEYPAD_BITS
 
-	\brief bit values for keypad buttons
-*/
+/** \enum KEYPAD_BITS
+ *  \brief Bit values for keypad buttons
+ */
 typedef enum KEYPAD_BITS {
 	KEY_A		=	(1<<0),	/*!< keypad A button */
 	KEY_B		=	(1<<1),	/*!< keypad B button */
@@ -75,47 +70,51 @@ typedef enum KEYPAD_BITS {
 } KEYPAD_BITS;
 
 
-/*! \fn scanKeys()
-	\brief obtain the current keypad states.
-
-	Call this function once per main loop in order to use the keypad functions.
-*/
+/** \brief Obtain the current keypad states.
+ *  \details Call this function once per main loop in order to use the keypad 
+ *  functions.
+ */
 void scanKeys(void);
-/*! \fn u16 keysDown()
-	\brief obtain the current keypad pressed state.
 
-	Returns the keys which have been pressed since the last call to KeysDown(), the keys are reset on this call.
-	Keys which are pressed will not be reported again until they are released.
-*/
+/** \brief Obtain the current keypad pressed state.
+ *  \details Returns the keys which have been pressed since the last call to 
+ *  \c KeysDown(), the keys are reset on this call. Keys which are pressed will 
+ *  not be reported again until they are released.
+ *  @return The keys that were pressed during the previous \c scanKeys() scan.
+ */
 u16	keysDown();
-/*! \fn u16 keysDownRepeat()
-	\brief obtain the current keypad pressed state with repeat.
 
-*/
+/** \brief Obtain the current keypad pressed state with repeat.
+ *  \details This is basically the result of \c keysDown() ANDed with
+ *  \c keysHeld().
+ *  @return The keys that were down and held during the previous \c scanKeys()
+ *  scan.
+ */
 u16	keysDownRepeat();
-/*! \fn u16 keysUp()
-	\brief obtain the current keypad released.
 
-	Returns the keys which have been pressed since the last call to KeysDown(), the keys are reset on this call.
-	Keys which are pressed will not be reported again until they have been held for the times specified using SetRepeat().
-*/
+/** \brief Obtain the current keypad released.
+ *  \details Returns the keys which have been released since the last call to 
+ *  \c KeysDown(), the keys are reset on this call. Keys which are pressed will 
+ *  not be reported again until they have been held for the times specified 
+ *  using \c SetRepeat().
+ *  @return The keys that were released during the previous \c scanKeys() scan.
+ */
 u16 keysUp();
-/*! \fn u16 keysHeld()
-	\brief obtain the current keypad held state.
 
-	Returns the keys which have been pressed since the last call to KeysUp(), the keys are reset on this call.
-	Keys which are released will not be reported again until they are pressed.
-*/
+/** \brief Obtain the current keypad held state.
+ *  \details Returns the keys which have stayed pressed since the last call to 
+ *  \c KeysUp(), the keys are reset on this call. Keys which are released will 
+ *  not be reported again until they are pressed.
+ *  @return The keys that were held during the previous \c scanKeys() scan.
+ */
 u16 keysHeld();
 
-
-/*! \fn setRepeat(int SetDelay, int SetRepeat)
-	\brief Set the repeat parameters for KeyDownRepeat.
-	\param SetDelay The count before the key starts to repeat
-	\param SetRepeat The count at which the key will repeat
-
-	The counts are updated on each call to ScanKeys(), the rates are dependent on how often that function is called.
-*/
+/** \brief Set the repeat parameters for KeyDownRepeat.
+ *  \details The counts are updated on each call to ScanKeys(), the rates are 
+ *  dependent on how often that function is called.
+ *  @param SetDelay The count before the key starts to repeat
+ *  @param SetRepeat The count at which the key will repeat
+ */
 void setRepeat( int SetDelay, int SetRepeat);
 
 //---------------------------------------------------------------------------------
