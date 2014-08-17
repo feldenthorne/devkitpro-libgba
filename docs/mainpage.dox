@@ -32,7 +32,7 @@ The official master branch is less likely to give you issues because there's a h
 which means it's been tested and approved by the official team. As an individual, I can't provide that.
 <i>The only reason you might want to download the UNOFFICIAL source as an end-user</i> is if you want
 the comments above and beyond what you'd find in the original source. I don't plan on changing the
-original library functions, so the unofficial version should perform identically.
+original library functions, though, so this unofficial version should perform identically.
 
 If changes are made to the original source, however, they will be listed in this main page and
 documented heavily where the changes appear.
@@ -44,5 +44,8 @@ you can imagine goes to the original author of these tools, Dave Murphy of
 [devkitPro](http://devkitpro.org/). I'm sure, of course, that the 
 [devkitPro forum community](http://devkitpro.org/index.php) also had a huge hand in testing, 
 debugging, and suggesting or implementing changes to the code.
+
+Additionally, the [GBATEK information](http://problemkaputt.de/gbatek.htm), written by Martin Korth,
+was a huge help in understanding what was going on with the GBA assembly instructions. 
 
 */
